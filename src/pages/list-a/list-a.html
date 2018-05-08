@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ListAPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>list-a</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="outer-content" #content (ionScrollEnd)="scrollEnd(content)">
+
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start><img [lazy-src]="item.picture.thumbnail" [lazy-content]="content"></ion-thumbnail>
+      <h3>{{item.name.first}} {{item.name.last}}</h3>
+      <p>{{item.dob}}</p>
+      <ion-note item-end>{{item.phone}}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
